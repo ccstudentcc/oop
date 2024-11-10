@@ -6,7 +6,6 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <filesystem>
 
 // The Diary class represents a personal diary application,
 // allowing for adding, retrieving, removing, and listing diary entries.
