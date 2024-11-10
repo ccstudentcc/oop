@@ -16,12 +16,12 @@ echo "Running diary management use cases..." | tee -a $LOG_FILE
 echo "Adding entries for dates 2024-11-01, 2024-01-01, 2024-12-01, 2024-06-12, 2024-11-02, and 2024-11-03" | tee -a $LOG_FILE
 
 # Add entries with respective dates and content
-echo -e "First entry for November 1st.\n." | ./build/pdadd 2024-11-01
-echo -e "First entry for January 1st.\n." | ./build/pdadd 2024-01-01
-echo -e "Second entry for December 1st.\n." | ./build/pdadd 2024-12-01
-echo -e "Second entry for June 12th.\n." | ./build/pdadd 2024-06-12
-echo -e "Second entry for November 2nd.\n." | ./build/pdadd 2024-11-02
-echo -e "Third entry for November 3rd.\n." | ./build/pdadd 2024-11-03
+echo -e "entry for November 1st.\n." | ./build/pdadd 2024-11-01
+echo -e "entry for January 1st.\n." | ./build/pdadd 2024-01-01
+echo -e "entry for December 1st.\n." | ./build/pdadd 2024-12-01
+echo -e "entry for June 12th.\n." | ./build/pdadd 2024-06-12
+echo -e "entry for November 2nd.\nThis is the first line.\nThis is the second line.\n." | ./build/pdadd 2024-11-02
+echo -e "entry for November 4th.\n." | ./build/pdadd 2024-11-04
 
 # --- Use case 2: List all diary entries ---
 echo -e "\nListing all entries in the diary:" | tee -a $LOG_FILE
@@ -37,7 +37,7 @@ echo -e "\nShowing entry for date 2024-06-12:" | tee -a $LOG_FILE
 
 # --- Use case 5: Update an existing entry ---
 echo -e "\nUpdating entry for 2024-11-02 with new content." | tee -a $LOG_FILE
-echo -e "Updated entry for November 2nd.\n." | ./build/pdadd 2024-11-02 | tee -a $LOG_FILE
+echo -e "Updated entry for November 2nd.\n." | ./build/pdadd 2024-11-02
 
 # Verify update
 echo -e "\nShowing updated entry for date 2024-11-02:" | tee -a $LOG_FILE

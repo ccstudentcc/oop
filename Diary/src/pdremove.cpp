@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     }
 
     std::string date = argv[1]; // Date for the diary entry to be removed
-    Diary diary("../data/diary.txt");
+    Diary diary("data/diary.txt");
 
     // Try to remove the entry and provide feedback on success or failure
     if (diary.removeEntry(date)) {

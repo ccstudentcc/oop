@@ -1,4 +1,3 @@
-// diary.h
 #ifndef DIARY_H
 #define DIARY_H
 
@@ -7,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <filesystem>
 
 // The Diary class represents a personal diary application,
 // allowing for adding, retrieving, removing, and listing diary entries.
@@ -31,7 +31,7 @@ public:
     // @param content: The content of the diary entry.
     void addEntry(const std::string &date, const std::string &content)
     {
-        entries[date] = content;
+        entries[date] = content;  // Overwrites the entry if it exists
     }
 
     // Retrieves the content of an entry for a specific date.
@@ -64,7 +64,7 @@ public:
 
             if ((start.empty() || date >= start) && (end.empty() || date <= end))
             {
-                std::cout << date << ": " << it->second << std::endl;
+                std::cout << date << " " << it->second << std::endl;
                 found = true;
             }
         }
@@ -84,14 +84,35 @@ private:
     {
         std::ifstream file(filename);
         std::string line, date, content;
+        bool readingContent = false;
 
         // Read each line and parse date and content
         while (std::getline(file, line))
         {
-            std::istringstream iss(line);
-            std::getline(iss, date, ' ');
-            std::getline(iss, content);
-            entries[date] = content;
+            line = trim(line); // Trim leading/trailing spaces
+
+            if (line == ".") // End of entry
+            {
+                if (!date.empty())
+                {
+                    entries[date] = content; // Store entry for the date
+                }
+                readingContent = false;
+                content.clear();
+            }
+            else if (readingContent)
+            {
+                content += "\n" + line; // Append new line to the content
+            }
+            else
+            {
+                std::istringstream iss(line);
+                std::getline(iss, date, ' ');
+                date = trim(date); // Trim date
+                content = line.substr(date.length());
+                content = trim(content); // Trim content
+                readingContent = true;
+            }
         }
     }
 
@@ -108,9 +129,18 @@ private:
 
         for (auto it = entries.begin(); it != entries.end(); ++it)
         {
-            file << it->first << " " << it->second << std::endl;
+            file << it->first << " " << trim(it->second) << "\n.\n";  // Save without extra spaces
         }
+    }
+
+    // Helper function to trim leading and trailing spaces from a string
+    std::string trim(const std::string& str) const
+    {
+        size_t start = str.find_first_not_of(" \t\n\r");
+        size_t end = str.find_last_not_of(" \t\n\r");
+        return (start == std::string::npos || end == std::string::npos) ? "" : str.substr(start, end - start + 1);
     }
 };
 
 #endif // DIARY_H
+

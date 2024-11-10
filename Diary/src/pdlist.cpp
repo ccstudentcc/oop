@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Create Diary instance and list entries within date range
-    Diary diary("../data/diary.txt");
+    Diary diary("data/diary.txt");
     diary.listEntries(startDate, endDate);
 
     return 0; // Successful completion

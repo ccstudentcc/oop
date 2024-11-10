@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     }
 
     std::string date = argv[1]; // Date for the diary entry
-    Diary diary("../data/diary.txt");
+    Diary diary("data/diary.txt");
     std::string entry = diary.getEntry(date);
 
     // Check if entry exists and display it, or show an error
