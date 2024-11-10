@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Create Diary instance and add entry
-    Diary diary("diary.txt");
+    Diary diary("../data/diary.txt");
     diary.addEntry(date, content);
 
     return 0; // Successful completion
