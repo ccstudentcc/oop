@@ -1,0 +1,21 @@
+Running diary management use cases...
+Adding entries for dates 2024-11-01, 2024-01-01, 2024-12-01, 2024-06-12, 2024-11-02, and 2024-11-03
+
+Listing all entries in the diary:
+
+Listing entries from 2024-11-01 to 2024-11-03:
+
+Showing entry for date 2024-06-12:
+
+Updating entry for 2024-11-02 with new content.
+Enter diary content (end with '.' on a new line):
+
+Showing updated entry for date 2024-11-02:
+
+Removing entry for 2024-11-01.
+
+Trying to show entry for 2024-11-01 (should not exist):
+
+Listing all entries after removal:
+
+Diary management use cases completed.

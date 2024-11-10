@@ -1,0 +1,6 @@
+/home/cp/Documents/oop/Diary/build/CMakeFiles/pdadd.dir
+/home/cp/Documents/oop/Diary/build/CMakeFiles/pdlist.dir
+/home/cp/Documents/oop/Diary/build/CMakeFiles/pdremove.dir
+/home/cp/Documents/oop/Diary/build/CMakeFiles/pdshow.dir
+/home/cp/Documents/oop/Diary/build/CMakeFiles/edit_cache.dir
+/home/cp/Documents/oop/Diary/build/CMakeFiles/rebuild_cache.dir
