@@ -4,7 +4,7 @@ TARGET = test
 SRCS = test.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-all: $(TARGET)
+all: $(TARGET) run
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
@@ -12,7 +12,10 @@ $(TARGET): $(OBJS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
+run: $(TARGET)
+	./$(TARGET)
+
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-.PHONY: all clean
+.PHONY: all clean run
