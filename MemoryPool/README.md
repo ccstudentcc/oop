@@ -5,16 +5,28 @@ This project implements a custom memory allocator based on SGI's two-level strat
 The file structure is as follows:
 ```txt
 MemoryPool // directory
-│  Makefile
-│  MemoryPool.h
+│  CMakeLists.txt
 │  README.md
-│  test.cpp
 │
-└─figure
-        image1.png
+├─bin
+│      libwinpthread-1.dll
+│
+├─figure
+│      image1.png
+│
+└─src
+        MemoryPool.h
+        test.cpp
 ```
-
-To use `Makefile`, use command `make` to run the `test.cpp`.
+# Complie and Run
+Use the following command to complie.
+```
+mkdir build
+cd build
+cmake ..
+cmake --build . --config Release
+```
+The compiled program can be found in the `build\Release` folder.
 
 # Program Interfaces
 
@@ -44,29 +56,29 @@ The `Allocator<T>` class is a custom allocator that uses the `MemoryPool` for me
 I tested a custom memory allocator for vector operations at three different sizes (1000, 4000, 16000), randomly resizing 1/5 of the vectors. The assignment correctness was confirmed for both integer and pair elements. The output of a test on Windows is as follows:
 
 ```txt
-vecints assignment correct: 47
-vecpts assignment correct: 388
-TestSize: 1000 | Custom allocator cost: 0.051s
-vecints assignment correct: 47
-vecpts assignment correct: 388
-TestSize: 1000 | std::allocator cost: 0.060s
-Custom allocator is 0.850 times std::allocator for TestSize 1000
+vecints assignment correct: 530
+vecpts assignment correct: 721
+TestSize: 1000 | Allocator cost: 0.0060s
+vecints assignment correct: 530
+vecpts assignment correct: 721
+TestSize: 1000 | std::allocator cost: 0.0060s
+Custom allocator is 1.0000 times std::allocator for TestSize 1000
 
-vecints assignment correct: 282
-vecpts assignment correct: 1096
-TestSize: 4000 | Custom allocator cost: 0.573s
-vecints assignment correct: 282
-vecpts assignment correct: 1096
-TestSize: 4000 | std::allocator cost: 0.397s
-Custom allocator is 1.443 times std::allocator for TestSize 4000
+vecints assignment correct: 3835
+vecpts assignment correct: 705
+TestSize: 4000 | Allocator cost: 0.0550s
+vecints assignment correct: 3835
+vecpts assignment correct: 705
+TestSize: 4000 | std::allocator cost: 0.0590s
+Custom allocator is 0.9322 times std::allocator for TestSize 4000
 
-vecints assignment correct: 14802
-vecpts assignment correct: 12139
-TestSize: 16000 | Custom allocator cost: 6.825s
-vecints assignment correct: 14802
-vecpts assignment correct: 12139
-TestSize: 16000 | std::allocator cost: 3.795s
-Custom allocator is 1.798 times std::allocator for TestSize 16000
+vecints assignment correct: 11778
+vecpts assignment correct: 15746
+TestSize: 16000 | Allocator cost: 0.9350s
+vecints assignment correct: 11778
+vecpts assignment correct: 15746
+TestSize: 16000 | std::allocator cost: 0.9840s
+Custom allocator is 0.9502 times std::allocator for TestSize 16000
 ```
 
 Compared to `std::allocator`, the custom allocator `Allocator` ran at about 0.85 times the cost for TestSize 1000, 1.44 times for 4000, and 1.80 times for 16000. Overall, performance varies depending on data size, but correctness is maintained.

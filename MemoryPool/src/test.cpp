@@ -60,7 +60,9 @@ void test(int TestSize, unsigned int seed) {
 int main()
 {
     std::cout << std::fixed << std::setprecision(4);
-    unsigned int seed = 12345; // Fixed random seed
+    unsigned int seed;
+    std::random_device rd;
+    seed = rd();
     for (const auto& TestSize : TestSizes) {
         double custom_alloc_time, std_alloc_time;
         clock_t start;
