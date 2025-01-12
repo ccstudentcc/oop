@@ -13,9 +13,8 @@ const std::vector<int> TestSizes = {1000, 4000, 16000};
 
 // Template function to test allocator performance
 template <template <class> class MyAllocator>
-void test(int TestSize) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+void test(int TestSize, unsigned int seed) {
+    std::mt19937 gen(seed);
     std::uniform_int_distribution<> dis(1, TestSize);
     int PickSize = TestSize / 5;  // Randomly resize 1/5 of the vectors
 
@@ -60,20 +59,21 @@ void test(int TestSize) {
 
 int main()
 {
-    std::cout << std::fixed << std::setprecision(3);
+    std::cout << std::fixed << std::setprecision(4);
+    unsigned int seed = 12345; // Fixed random seed
     for (const auto& TestSize : TestSizes) {
         double custom_alloc_time, std_alloc_time;
         clock_t start;
 
         // Test with custom allocator
         start = clock();
-        test<Allocator>(TestSize);
+        test<Allocator>(TestSize, seed);
         custom_alloc_time = (clock() - start) * 1.0 / CLOCKS_PER_SEC;
         std::cout << "TestSize: " << TestSize << " | Allocator cost: " << custom_alloc_time << "s" << std::endl;
 
         // Test with standard allocator
         start = clock();
-        test<std::allocator>(TestSize);
+        test<std::allocator>(TestSize, seed);
         std_alloc_time = (clock() - start) * 1.0 / CLOCKS_PER_SEC;
         std::cout << "TestSize: " << TestSize << " | std::allocator cost: " << std_alloc_time << "s" << std::endl;
 
