@@ -80,8 +80,8 @@ int main()
         std::cout << "TestSize: " << TestSize << " | std::allocator cost: " << std_alloc_time << "s" << std::endl;
 
         // Compare allocator performance
-        double ratio = custom_alloc_time / std_alloc_time;
-        std::cout << "Custom allocator is " << ratio << " times std::allocator for TestSize " << TestSize << "\n" << std::endl;
+        double ratio = std_alloc_time / custom_alloc_time;
+        std::cout << "Custom allocator is " << ratio << " times as fast as std::allocator for TestSize " << TestSize << "\n" << std::endl;
     }
     return 0;
 }
