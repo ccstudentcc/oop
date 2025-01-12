@@ -58,8 +58,8 @@ void test(int TestSize) {
         std::cout << "vecpts assignment incorrect: " << idx1 << std::endl;
 }
 
-template <template <class> class custom>
-void runTests() {
+int main()
+{
     std::cout << std::fixed << std::setprecision(3);
     for (const auto& TestSize : TestSizes) {
         double custom_alloc_time, std_alloc_time;
@@ -67,9 +67,9 @@ void runTests() {
 
         // Test with custom allocator
         start = clock();
-        test<custom>(TestSize);
+        test<Allocator>(TestSize);
         custom_alloc_time = (clock() - start) * 1.0 / CLOCKS_PER_SEC;
-        std::cout << "TestSize: " << TestSize << " | Custom allocator cost: " << custom_alloc_time << "s" << std::endl;
+        std::cout << "TestSize: " << TestSize << " | Allocator cost: " << custom_alloc_time << "s" << std::endl;
 
         // Test with standard allocator
         start = clock();
@@ -81,9 +81,5 @@ void runTests() {
         double ratio = custom_alloc_time / std_alloc_time;
         std::cout << "Custom allocator is " << ratio << " times std::allocator for TestSize " << TestSize << "\n" << std::endl;
     }
-}
-
-int main() {
-    runTests<Allocator>();
     return 0;
 }
