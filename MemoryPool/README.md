@@ -29,7 +29,7 @@ cd build
 cmake ..
 cmake --build . --config Release
 ```
-The compiled program can be found in  `build\Release\test.exe` when test on Windows or in `build\test` when test on Linux.
+The compiled program can be found in `build\Release\test.exe` when test on Windows or in `build\test` when test on Linux.
 
 
 
