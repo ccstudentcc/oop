@@ -1,18 +1,17 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -O3 -g
+CXXFLAGS = -std=c++11 -Wall -Wextra -O3 -I.
 TARGET = test
 SRCS = test.cpp
-OBJS = $(SRCS:.cpp=.o)
 
-all: $(TARGET)
+all: $(TARGET) run
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(TARGET):
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
 
-%.o: %.cpp MemoryPool.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+run: $(TARGET)
+	./$(TARGET)
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(TARGET)
 
-.PHONY: all clean
+.PHONY: all clean run

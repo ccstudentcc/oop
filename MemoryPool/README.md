@@ -41,7 +41,7 @@ The `MemoryPool` class provides static methods for memory allocation and dealloc
 The `Allocator<T>` class is a custom allocator that uses the `MemoryPool` for memory management. It provides methods to allocate and deallocate memory for objects of type T, as well as to construct and destroy objects in the allocated memory.
 
 # Test
-I tested a custom memory allocator for vector operations at three different sizes (1000, 4000, 16000), randomly resizing 1/5 of the vectors. The assignment correctness was confirmed for both integer and pair elements. The output of a test is as follows:
+I tested a custom memory allocator for vector operations at three different sizes (1000, 4000, 16000), randomly resizing 1/5 of the vectors. The assignment correctness was confirmed for both integer and pair elements. The output of a test on Windows is as follows:
 
 ```txt
 vecints assignment correct: 47
